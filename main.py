@@ -22,7 +22,7 @@ class Record:
     def __init__(self, name):
         self.name = Name(name)
         self.phones = []
-    
+
     def add_phone(self, phone:str):
         phone_object = Phone(phone)
         self.phones.append(phone_object)
@@ -32,13 +32,13 @@ class Record:
             if p.value == phone:
                 self.phones.remove(p)
 
-    def edit_phone(self, phone:str, new_phone):       
-        for i in self.phones:         
+    def edit_phone(self, phone:str, new_phone):
+        for i in self.phones:
             if i.value == phone:
                 i.value = new_phone
                 return
-        raise ValueError 
-                  
+        raise ValueError
+
     def find_phone(self, phone:str):
         for ph in self.phones:
             if ph.value == phone:
@@ -54,11 +54,11 @@ class AddressBook(UserDict):
 
     def find(self, name):
         return self.data.get(name)
-    
+
     def delete(self, name):
         if name in self.data:
             return self.data.pop(name)
-        
+
 if __name__ == '__main__':
     book = AddressBook()
 
