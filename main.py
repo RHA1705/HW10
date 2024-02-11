@@ -37,11 +37,18 @@ class Record:
                 return p
 
     def edit_phone(self, phone:str, new_phone):
+<<<<<<< HEAD
         Phone(new_phone)
         for i in self.phones:
             if i.value == phone:
                 i.value = new_phone
                 return i
+=======
+        for i in self.phones:
+            if i.value == phone:
+                i.value = new_phone
+                return
+>>>>>>> b1f512e34c0ef9eff88d40893bdad522f4dfc9d1
         raise ValueError
 
     def find_phone(self, phone:str):
@@ -58,7 +65,11 @@ class AddressBook(UserDict):
         self.data[record.name.value] = record
 
     def find(self, name):
+<<<<<<< HEAD
         return self.data.get(name, None)
+=======
+        return self.data.get(name)
+>>>>>>> b1f512e34c0ef9eff88d40893bdad522f4dfc9d1
 
     def delete(self, name):
         if name in self.data:
@@ -96,3 +107,7 @@ if __name__ == '__main__':
 
     # Видалення запису Jane
     book.delete("Jane")
+<<<<<<< HEAD
+=======
+    
+>>>>>>> b1f512e34c0ef9eff88d40893bdad522f4dfc9d1
