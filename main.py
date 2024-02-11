@@ -1,6 +1,8 @@
+''''''
 from collections import UserDict
 
 class Field:
+    ''''''
     def __init__(self, value):
         self.value = value
 
@@ -14,7 +16,7 @@ class Name(Field):
 class Phone(Field):
     # реалізація класу
     def __init__(self, value):
-        if len(value) < 10 or len(value) > 10 or not value.isdigit():
+        if len(value) != 10 or not value.isdigit():
             raise ValueError
         super().__init__(value)
 
@@ -22,30 +24,33 @@ class Record:
     def __init__(self, name):
         self.name = Name(name)
         self.phones = []
-    
+
     def add_phone(self, phone:str):
         phone_object = Phone(phone)
         self.phones.append(phone_object)
+        return phone_object
 
     def remove_phone(self, phone:str):
         for p in self.phones:
             if p.value == phone:
                 self.phones.remove(p)
+                return p
 
-    def edit_phone(self, phone:str, new_phone):       
-        for i in self.phones:         
+    def edit_phone(self, phone:str, new_phone):
+        Phone(new_phone)
+        for i in self.phones:
             if i.value == phone:
                 i.value = new_phone
-                return
-        raise ValueError 
-                  
+                return i
+        raise ValueError
+
     def find_phone(self, phone:str):
         for ph in self.phones:
             if ph.value == phone:
                 return ph
 
     def __str__(self):
-        return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
+        return f"Contact name: {str(self.name)}, phones: {'; '.join(str(p) for p in self.phones)}"
 
 class AddressBook(UserDict):
     # реалізація класу
@@ -53,12 +58,12 @@ class AddressBook(UserDict):
         self.data[record.name.value] = record
 
     def find(self, name):
-        return self.data.get(name)
-    
+        return self.data.get(name, None)
+
     def delete(self, name):
         if name in self.data:
             return self.data.pop(name)
-        
+
 if __name__ == '__main__':
     book = AddressBook()
 
