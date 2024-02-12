@@ -56,6 +56,7 @@ class Record:
         for ph in self.phones:
             if ph.value == phone:
                 return ph
+        return None
 
     def __str__(self):
         return f"Contact name: {str(self.name)}, phones: {'; '.join(str(p) for p in self.phones)}"
